@@ -1,0 +1,60 @@
+<div>
+    <div class="input-group mb-3">
+        <input type="file" class="form-control" id="uploadXmlBtn" file-model="fileToUpload">
+        <button class="input-group-text" for="uploadXmlBtn" ng-click="uploadFile()">Загрузить</button>
+    </div>
+
+    <div ng-if="isViewFile" class="mb-3">
+        <h3>Файл целиком:</h3>
+        <textarea disabled class="form-control mb-3" placeholder="Содержимое файла" style="height: 300px"
+                  ng-value="viewFileFromDbTextArea"></textarea>
+        <button class="btn btn-danger" ng-click="loadPage()">Закрыть</button>
+    </div>
+
+    <div ng-if="isViewContent" class="mb-3">
+        <h3>Содержимое файла:</h3>
+        <table class="table table-hover mb-3">
+            <tr>
+                <td>Тэг</td>
+                <td>Значение</td>
+            </tr>
+            <tbody>
+
+            <tr ng-repeat="tag in tags">
+                <td>{{tag.name}}</td>
+                <td style="white-space: pre;">{{tag.content}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-danger" ng-click="loadPage()">Закрыть</button>
+    </div>
+
+    <div ng-if="tableData.length == 0">
+        <h3>База данных пуста.</h3>
+    </div>
+
+    <div ng-if="tableData.length > 0">
+        <h3>Список файлов в базе данных:</h3>
+        <table class="table table-hover">
+            <tr>
+                <td>Id</td>
+                <td>Содержимое файла</td>
+                <td>Просмотр</td>
+            </tr>
+            <tbody>
+
+            <tr ng-repeat="file in tableData">
+                <td>{{file.id}}</td>
+                <td style="white-space: pre;">{{file.data}}</td>
+                <td>
+                    <div class="d-grid gap-2 col-6">
+                        <button class="btn btn-primary" ng-click="viewFile(file.id)">Целиком</button>
+                        <button class="btn btn-primary" ng-click="viewContent(file.id)">Содержимое</button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <button class="btn btn-success" ng-click="loadPage()">Обновить</button>
+    </div>
+</div>

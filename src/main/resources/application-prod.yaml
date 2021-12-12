@@ -1,0 +1,15 @@
+server:
+  port: 8189
+  servlet:
+    context-path: /parser
+spring:
+  datasource:
+    url: jdbc:postgresql://postgres-for-xml-parser:5432/spring_parser
+    username: postgres
+    password: postgres
+    driverClassName: org.postgresql.Driver
+  jpa:
+    show-sql: false
+    database: postgresql
+    hibernate:
+      ddl-auto: validate

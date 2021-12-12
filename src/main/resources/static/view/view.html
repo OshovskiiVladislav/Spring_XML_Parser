@@ -1,0 +1,36 @@
+<div>
+    <div class="input-group mb-3">
+        <input type="file" class="form-control" id="viewXmlFile" file-model="fileToUpload">
+        <button class="btn btn-success dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Действия
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+            <li><a class="dropdown-item" ng-click="viewFile()">Просмотр целиком</a></li>
+            <li><a class="dropdown-item" ng-click="viewContent()">Просмотр содержимого</a></li>
+            <li><a class="dropdown-item" ng-click="uploadFile(true)">Загрузить в базу</a></li>
+        </ul>
+    </div>
+
+    <div ng-if="isViewFile">
+        <h3>Данные из файла:</h3>
+        <textarea disabled class="form-control" id="viewFileTextArea" placeholder="Содержимое файла"
+                  style="height: 300px"></textarea>
+    </div>
+
+    <div ng-if="isViewContent">
+        <h3>Содержимое файла:</h3>
+        <table class="table table-hover table-sm">
+            <tr>
+                <td>Тэг</td>
+                <td>Значение</td>
+            </tr>
+            <tbody>
+
+            <tr ng-repeat="tag in tags">
+                <td>{{tag.name}}</td>
+                <td style="white-space: pre;">{{tag.content}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

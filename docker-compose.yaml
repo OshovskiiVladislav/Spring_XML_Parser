@@ -1,0 +1,27 @@
+version: "3.2"
+services:
+  postgres:
+    image: postgres
+    container_name: 'postgres-for-xml-parser'
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./volumes/postgres/data/:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  xmlparserapp:
+    build: .
+    container_name: 'xml-parser-spring-boot-app'
+    ports:
+      - 8189:8189
+    volumes:
+      - ./volumes/app/data/:/files
+    depends_on:
+      postgres:
+        condition: service_healthy
