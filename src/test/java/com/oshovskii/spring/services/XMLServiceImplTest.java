@@ -91,7 +91,7 @@ public class XMLServiceImplTest {
         when(xmlRepositoryMock.findAll()).thenReturn(sourceXMLFile);
 
         // Call
-        List<XMLFile> result = xmlService.findAllXMLFiles();
+        final List<XMLFile> result = xmlService.findAllXMLFiles();
 
         // Verify
         assertEquals(sourceXMLFile, result);
@@ -106,7 +106,7 @@ public class XMLServiceImplTest {
         when(xmlRepositoryMock.findById(xmlFile.getId())).thenReturn(Optional.of(xmlFile));
 
         // Call
-        XMLFile result = xmlService.findXMLFileById(xmlFile.getId());
+        final XMLFile result = xmlService.findXMLFileById(xmlFile.getId());
 
         // Verify
         assertEquals(xmlFile, result);
@@ -123,7 +123,7 @@ public class XMLServiceImplTest {
         when(tagRepositoryMock.findAllByXMLFileId(XML_FILE_ID)).thenReturn(tagList);
 
         // Call
-        List<Tag> result = xmlService.findTagsByXMLFileId(XML_FILE_ID);
+        final List<Tag> result = xmlService.findTagsByXMLFileId(XML_FILE_ID);
 
         // Verify
         assertEquals(tagList, result);
